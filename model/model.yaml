@@ -14,7 +14,7 @@ prefixes:
     acl: http://www.w3.org/ns/auth/acl#
     dcterms: http://purl.org/dc/terms/
     foaf: http://xmlns.com/foaf/0.1/
-    schema: https://schema.org/
+    schema: http://schema.org/
     xacml: urn:oasis:names:tc:xacml:3.0:core:schema:wd-17#
     oauth: https://www.w3.org/ns/auth/oauth#
     cert: http://www.w3.org/ns/auth/cert#
