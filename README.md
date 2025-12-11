@@ -1,6 +1,6 @@
 # CE-RISE DPP Access and Governance
 
-[![DOI](https://zenodo.org/badge/DOI/TOBEOBTAINED.svg)](https://doi.org/TOBEOBTAINED) [![Schemas](https://img.shields.io/badge/Schema%20Files-LinkML%2C%20JSON%2C%20SHACL%2C%20OWL-32CD32)](https://ce-rise-models.codeberg.page/dpp-access-and-governance/)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17899269.svg)](https://doi.org/10.5281/zenodo.17899269) [![Schemas](https://img.shields.io/badge/Schema%20Files-LinkML%2C%20JSON%2C%20SHACL%2C%20OWL-32CD32)](https://ce-rise-models.codeberg.page/dpp-access-and-governance/)
 
 Repository for the CE-RISE DPP Access and Governance data model, part of the DPP Metadata Layer in the Digital Product Passport architecture. This model defines the operational and access-related metadata that governs how DPP records are stored, exposed, shared, and maintained across systems. It specifies access levels, security settings, data carrier characteristics, longevity policies, interoperability configurations, and system integration parameters. This metadata acts as the "operational envelope" that controls how DPP data is accessed and managed throughout its lifecycle, complementing the structural metadata (dpp-record-metadata) and custody tracking (dpp-record-custody).
 
