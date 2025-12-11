@@ -1,7 +1,7 @@
 cff-version: 1.2.0
-title: Project template for data models developed within the CE-RISE Horizon Europe project
+title: CE-RISE DPP Access and Governance
 message: >-
-  v0.0.1 - Initial sketch of project template.
+  v0.0.1 - Complete implementation of data model with five stages.
 type: software
 doi: xxx_to_be_obtained_xxx
 authors:
@@ -14,10 +14,13 @@ identifiers:
   - type: doi
     value: xxx_to_be_obtained_xxx
     description: This DOI represents all software versions.
-repository-code: 'https://codeberg.org/CE-RISE_models/template-data-model'
-url: 'https://ce-rise-models.codeberg.page/template-data-model/'
+repository-code: 'https://codeberg.org/CE-RISE-models/dpp-access-and-governance'
+url: 'https://ce-rise-models.codeberg.page/dpp-access-and-governance/'
 abstract: >-
-  Project template for data models developed within the CE-RISE Horizon Europe project.
+  Operational and access-related metadata model that governs how DPP records are stored,
+  exposed, shared, and maintained across systems. Defines access levels, security settings,
+  data carrier characteristics, longevity policies, interoperability configurations, and
+  system integration parameters for the CE-RISE Digital Product Passport architecture.
 keywords:
   - CE-RISE
   - Data Model
