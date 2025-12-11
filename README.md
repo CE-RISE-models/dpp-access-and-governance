@@ -26,81 +26,109 @@ DPPAccessAndGovernance (root)
 │   ├── AccessLevels
 │   │   ├── PublicAccess
 │   │   │   ├── PublicFields (list of openly accessible fields)
-│   │   │   └── PublicAccessURL
+│   │   │   ├── PublicAccessURL
+│   │   │   └── PublicDataLicense (license governing public data usage)
 │   │   ├── AuthenticatedAccess
 │   │   │   ├── AuthenticationMethod (OAuth2, API key, certificate, etc.)
 │   │   │   ├── AuthenticatedFields
-│   │   │   └── AuthenticationEndpoint
+│   │   │   ├── AuthenticationEndpoint
+│   │   │   └── TokenLifetime (authentication token validity duration)
 │   │   └── RestrictedAccess
-│   │       ├── RoleBasedPermissions
+│   │       ├── RoleBasedPermissions (expanded with RolePermission class)
 │   │       ├── RestrictedFields
-│   │       └── AccessRequestProcess
+│   │       ├── AccessRequestProcess
+│   │       └── AccessJustificationRequired (whether justification needed)
 │   ├── SecuritySettings
 │   │   ├── EncryptionMethod (for data in transit)
-│   │   ├── DataClassification (public, internal, confidential, secret)
+│   │   ├── DataClassification (public, internal, confidential, secret, personal)
 │   │   ├── TransportSecurity (TLS, API signatures)
-│   │   └── AccessAttemptLogging (failed attempts, permission checks)
+│   │   ├── AccessAttemptLogging (expanded AccessLogging class with retention)
+│   │   └── IntegrityVerification (method for verifying data integrity)
 │   └── ConsentManagement
 │       ├── ConsentRequired (boolean)
-│       ├── ConsentScope
-│       └── ConsentRevocationMethod
+│       ├── ConsentScope (purpose of consent)
+│       ├── ConsentRevocationMethod
+│       ├── ConsentDuration (validity period in days)
+│       └── ConsentGranularity (field-level, record-level, etc.)
 │
 ├── 2. DataCarrier
-│   ├── CarrierType (QR code, RFID, NFC, URL, API, blockchain, etc.)
-│   ├── CarrierCapacity (data size limits)
-│   ├── CarrierLocation (physical or digital location)
-│   ├── CarrierRedundancy (backup carriers)
-│   └── CarrierUpdateMechanism
+│   ├── CarrierType (QR code, RFID, NFC, URL, API, blockchain, IPFS, etc.)
+│   ├── CarrierCapacity (data size limits in bytes)
+│   ├── CarrierLocation (expanded class with location type, addresses, instructions)
+│   ├── CarrierRedundancy (expanded class with redundancy levels, failover)
+│   └── CarrierUpdateMechanism (expanded class with update methods, offline capability)
 │
 ├── 3. DataLongevity
 │   ├── RetentionPolicy
-│   │   ├── MinimumRetentionPeriod
-│   │   ├── MaximumRetentionPeriod
-│   │   └── RetentionJustification
+│   │   ├── MinimumRetentionPeriod (in days)
+│   │   ├── MaximumRetentionPeriod (in days, 0 for indefinite)
+│   │   ├── RetentionJustification (legal or business justification)
+│   │   ├── RegulatoryRequirement (specific regulations)
+│   │   └── DataCategories (categories covered by policy)
 │   ├── AvailabilityCommitment
-│   │   ├── GuaranteedAvailabilityPeriod
+│   │   ├── GuaranteedAvailabilityPeriod (in days)
 │   │   ├── ServiceLevelAgreement (uptime percentage)
-│   │   └── MaintenanceWindows
+│   │   ├── MaintenanceWindows (expanded class with schedule, duration, notice)
+│   │   ├── AvailabilityZones (geographic or logical zones)
+│   │   └── DisasterRecoveryTime (recovery time objective in hours)
 │   ├── ArchivalStrategy
-│   │   ├── ArchiveFormat
+│   │   ├── ArchiveFormat (ZIP, TAR.GZ, Parquet, JSON-LD, RDF, WARC, BagIt)
 │   │   ├── ArchiveLocation
-│   │   └── ArchiveAccessProcess
+│   │   ├── ArchiveAccessProcess
+│   │   ├── ArchiveEncryption (encryption method for archives)
+│   │   ├── ArchiveIntegrityCheck (verification method)
+│   │   └── ArchiveRetrievalTime (expected retrieval time in hours)
 │   └── DisposalPolicy
-│       ├── DisposalCriteria (when to dispose)
-│       ├── DisposalMethod (how to dispose)
-│       └── DisposalNotification (who to inform)
+│       ├── DisposalCriteria (conditions triggering disposal)
+│       ├── DisposalMethod (deletion, anonymization, pseudonymization, etc.)
+│       ├── DisposalNotification (who to notify)
+│       ├── DisposalVerification (method for verifying disposal)
+│       └── LegalHoldCheck (check for legal holds before disposal)
 │
 ├── 4. InteroperabilityConfiguration
 │   ├── APISpecification
-│   │   ├── APIEndpoints
+│   │   ├── APIEndpoints (list of available endpoints)
 │   │   ├── APIVersion
 │   │   ├── APIDocumentationURL
-│   │   └── RateLimits
+│   │   ├── RateLimits (expanded RateLimit class with types and scopes)
+│   │   └── APIAuthentication (required authentication method)
 │   ├── FormatDelivery
-│   │   ├── FormatNegotiation (content negotiation)
-│   │   ├── FormatConversionService
-│   │   └── CompressionOptions
+│   │   ├── FormatNegotiation (HTTP Accept, URL parameter, file extension)
+│   │   ├── SupportedFormats (list of output formats)
+│   │   ├── FormatConversionService (conversion endpoint)
+│   │   ├── CompressionOptions (GZIP, Brotli, Deflate, ZIP)
+│   │   └── DefaultFormat (when none specified)
 │   ├── ProtocolSupport
-│   │   ├── TransferProtocols (HTTPS, MQTT, CoAP, etc.)
-│   │   ├── QueryProtocols (REST, GraphQL, SPARQL)
-│   │   └── SubscriptionProtocols (WebSocket, SSE)
+│   │   ├── TransferProtocols (HTTPS, HTTP/2, HTTP/3, MQTT, CoAP, etc.)
+│   │   ├── QueryProtocols (REST, GraphQL, SPARQL, SQL, OData, gRPC)
+│   │   ├── SubscriptionProtocols (WebSocket, SSE, Webhooks, MQTT, AMQP)
+│   │   └── ProtocolVersion (specific versions supported)
 │   └── StandardsCompliance
 │       ├── ComplianceStandards (ISO, W3C, GS1, etc.)
-│       └── ConformanceCertificates
+│       ├── ConformanceCertificates (URLs or identifiers)
+│       ├── ValidationEndpoint (compliance validation service)
+│       └── ComplianceLevel (level achieved)
 │
 └── 5. SystemIntegration
-    ├── DataSourceSystems
-    │   ├── SourceSystemIdentifiers
-    │   ├── SyncFrequency
-    │   └── DataMappings
-    ├── ConsumerSystems
-    │   ├── AuthorizedConsumers
-    │   ├── UsageRestrictions
-    │   └── UsageTracking
-    └── OperationalMetrics
-        ├── PerformanceMetrics (response times, availability, throughput)
-        ├── CapacityMetrics (storage usage, bandwidth)
-        └── ServiceMetrics (uptime, error rates, SLA compliance)
+    ├── DataSourceSystems (expanded class per source system)
+    │   ├── SourceSystemIdentifier (unique ID)
+    │   ├── SourceSystemName (human-readable name)
+    │   ├── SourceSystemType (ERP, MES, PLM, IoT, etc.)
+    │   ├── SyncFrequency (in seconds)
+    │   ├── DataMappings (expanded DataMapping class with transformations)
+    │   ├── ConnectionEndpoint
+    │   └── LastSyncTimestamp
+    ├── ConsumerSystems (expanded class per consumer)
+    │   ├── ConsumerIdentifier (unique ID)
+    │   ├── ConsumerName (human-readable name)
+    │   ├── ConsumerType (analytics, reporting, marketplace, etc.)
+    │   ├── UsageRestrictions (list of restrictions)
+    │   ├── UsageTracking (expanded class with access/modification tracking)
+    │   └── AuthorizedScopes (data scopes allowed)
+    └── OperationalMetrics (all expanded as detailed classes)
+        ├── PerformanceMetrics (response time, throughput, latency P99, connections)
+        ├── CapacityMetrics (storage usage/capacity, bandwidth, CPU utilization)
+        └── ServiceMetrics (uptime %, error rate, SLA compliance, availability status)
 ```
 
 ### Workflow Sequence
@@ -170,10 +198,10 @@ Every data point includes a `sql_identifier` annotation following the pattern:
 | Step | Component | Sub-Components | Criticalities Identified | Solutions Planned | Status | Missing/TODO |
 |------|-----------|---------------|-------------------------|-------------------|--------|--------------|
 | **1** | **Access Control** | • AccessLevels<br>• SecuritySettings<br>• ConsentManagement<br>• AuditLogging | • Multi-level access complexity<br>• GDPR compliance<br>• Authentication standards<br>• Audit requirements<br>• Role management | • Three-tier access model<br>• Standard auth methods<br>• Consent tracking<br>• Audit trail design<br>• RBAC implementation | **COMPLETED** | • OAuth2 integration<br>• Zero-trust model<br>• Consent UI<br>• Audit analytics |
-| **2** | **Data Carrier** | • CarrierType<br>• Capacity<br>• Location<br>• Redundancy<br>• Updates | • Diverse carrier types<br>• Size limitations<br>• Update synchronization<br>• Offline capability<br>• Carrier migration | • Flexible carrier model<br>• Capacity metadata<br>• Location tracking<br>• Redundancy strategy<br>• Update protocols | **PLANNED** | • Carrier optimization<br>• Migration tools<br>• Offline sync<br>• Carrier monitoring |
-| **3** | **Data Longevity** | • RetentionPolicy<br>• Availability<br>• Archival<br>• DisposalPolicy | • Regulatory requirements<br>• Storage costs<br>• Archive accessibility<br>• Disposal policies<br>• Legal holds | • Policy framework<br>• SLA definitions<br>• Archive standards<br>• Disposal policies<br>• Compliance tracking | **PLANNED** | • Automated archival<br>• Cost optimization<br>• Legal hold system<br>• Policy automation |
-| **4** | **Interoperability** | • APIs<br>• FormatDelivery<br>• Protocols<br>• Standards | • API versioning<br>• Format delivery<br>• Protocol diversity<br>• Standards evolution<br>• Rate limiting | • OpenAPI specs<br>• Content negotiation<br>• Protocol adapters<br>• Standards mapping<br>• Rate limit config | **PLANNED** | • API gateway<br>• Auto-conversion<br>• Protocol bridge<br>• Compliance testing |
-| **5** | **System Integration** | • Sources<br>• Consumers<br>• OperationalMetrics | • System discovery<br>• Data synchronization<br>• Usage tracking<br>• Performance monitoring<br>• Service monitoring | • System registry<br>• Sync protocols<br>• Operational metrics<br>• Monitoring setup<br>• Performance tracking | **PLANNED** | • Auto-discovery<br>• Real-time sync<br>• Ops dashboard<br>• Alert system |
+| **2** | **Data Carrier** | • CarrierType<br>• Capacity<br>• Location<br>• Redundancy<br>• Updates | • Diverse carrier types<br>• Size limitations<br>• Update synchronization<br>• Offline capability<br>• Carrier migration | • Flexible carrier model<br>• Capacity metadata<br>• Location tracking<br>• Redundancy strategy<br>• Update protocols | **COMPLETED** | • Carrier optimization<br>• Migration tools<br>• Offline sync<br>• Carrier monitoring |
+| **3** | **Data Longevity** | • RetentionPolicy<br>• Availability<br>• Archival<br>• DisposalPolicy | • Regulatory requirements<br>• Storage costs<br>• Archive accessibility<br>• Disposal policies<br>• Legal holds | • Policy framework<br>• SLA definitions<br>• Archive standards<br>• Disposal policies<br>• Compliance tracking | **COMPLETED** | • Automated archival<br>• Cost optimization<br>• Legal hold system<br>• Policy automation |
+| **4** | **Interoperability** | • APIs<br>• FormatDelivery<br>• Protocols<br>• Standards | • API versioning<br>• Format delivery<br>• Protocol diversity<br>• Standards evolution<br>• Rate limiting | • OpenAPI specs<br>• Content negotiation<br>• Protocol adapters<br>• Standards mapping<br>• Rate limit config | **COMPLETED** | • API gateway<br>• Auto-conversion<br>• Protocol bridge<br>• Compliance testing |
+| **5** | **System Integration** | • Sources<br>• Consumers<br>• OperationalMetrics | • System discovery<br>• Data synchronization<br>• Usage tracking<br>• Performance monitoring<br>• Service monitoring | • System registry<br>• Sync protocols<br>• Operational metrics<br>• Monitoring setup<br>• Performance tracking | **COMPLETED** | • Auto-discovery<br>• Real-time sync<br>• Ops dashboard<br>• Alert system |
 
 ### Integration Opportunities
 
