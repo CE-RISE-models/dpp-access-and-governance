@@ -1,7 +1,7 @@
 cff-version: 1.2.0
 title: CE-RISE DPP Access and Governance
 message: >-
-  v0.0.1 - Complete implementation of data model with five stages.
+  v0.0.2 - Added refs from Beta data model release.
 type: software
 doi: 10.5281/zenodo.17899269
 authors:
